@@ -18,6 +18,11 @@
             --black: #000000;
             --gold: #D4AF37;
             --dark-cream: #E8E4C9;
+            --gradient-gold: linear-gradient(135deg, #D4AF37, #F5D76E);
+            --gradient-dark: linear-gradient(135deg, #000000, #333333);
+            --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 6px 12px rgba(0, 0, 0, 0.15);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
         
         body {
@@ -35,9 +40,26 @@
         }
         
         .navbar-brand {
-            font-weight: 700;
-            font-size: 1.8rem;
-            color: var(--black);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            display: block;
+            text-decoration: none;
+        }
+        
+        .navbar-brand:hover {
+            transform: scale(1.05);
+            text-decoration: none;
+        }
+        
+        .navbar-brand img {
+            height: 100px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .navbar-brand:hover img {
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+            filter: brightness(1.05);
         }
         
         .nav-link {
@@ -95,19 +117,37 @@
         
         /* Page Header */
         .page-header {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/about-hero.jpeg');
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('images/about-hero.jpeg');
             background-size: cover;
-            background-position: top center;
+            background-position: center;
+            background-attachment: fixed;
             color: white;
-            padding: 120px 0;
+            padding: 150px 0;
             margin-bottom: 50px;
             text-align: center;
         }
         
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(212, 175, 55, 0.2), rgba(0, 0, 0, 0.7));
+            z-index: 1;
+        }
+        
         .page-header h1 {
-            font-size: 3.5rem;
+            position: relative;
+            z-index: 2;
+            font-size: 4rem;
             font-weight: 700;
             margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: fadeInDown 1s ease;
         }
         
         /* About Page */
@@ -117,23 +157,46 @@
         
         .mission-card {
             background-color: var(--white);
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: var(--shadow-sm);
             margin-bottom: 30px;
             height: 100%;
-            transition: all 0.3s;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .mission-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient-gold);
+            transform: scaleX(0);
+            transition: transform 0.5s ease;
         }
         
         .mission-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .mission-card:hover::before {
+            transform: scaleX(1);
         }
         
         .mission-card i {
             color: var(--gold);
-            font-size: 1.5rem;
-            margin-bottom: 15px;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            transition: transform 0.5s ease;
+        }
+        
+        .mission-card:hover i {
+            transform: rotate(360deg);
         }
         
         /* African Organization Highlight - CHANGED BACKGROUND TO WHITE */
@@ -149,10 +212,19 @@
         .location-badge {
             display: inline-block;
             background-color: var(--dark-cream);
-            padding: 5px 15px;
-            border-radius: 20px;
+            padding: 8px 20px;
+            border-radius: 30px;
             margin: 5px;
             font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .location-badge:hover {
+            background: var(--gradient-gold);
+            color: var(--black);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-sm);
         }
         
         .age-range {
@@ -163,22 +235,44 @@
         /* NEW TEAM SECTION STYLES */
         .team-card {
             background-color: var(--white);
-            border-radius: 10px;
+            border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            box-shadow: var(--shadow-sm);
             margin-bottom: 30px;
-            transition: all 0.3s;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+        
+        .team-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient-gold);
+            transform: scaleX(0);
+            transition: transform 0.5s ease;
         }
         
         .team-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .team-card:hover::after {
+            transform: scaleX(1);
         }
         
         .team-img {
             width: 100%;
-            height: 250px;
+            height: 300px;
             object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .team-card:hover .team-img {
+            transform: scale(1.1);
         }
         
         .team-info {
@@ -223,23 +317,46 @@
         }
         
         .back-to-top {
-            position: absolute;
-            top: -25px;
+            position: fixed;
+            bottom: 30px;
             right: 30px;
             width: 50px;
             height: 50px;
-            background-color: var(--gold);
+            background: var(--gradient-gold);
             color: var(--black);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.2rem;
-            transition: all 0.3s;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
         }
         
         .back-to-top:hover {
-            transform: translateY(-5px);
+            transform: translateY(-5px) rotate(360deg);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            background: var(--gradient-dark);
+            color: var(--white);
+        }
+        
+        .back-to-top i {
+            transition: transform 0.3s ease;
+        }
+        
+        .back-to-top:hover i {
+            transform: translateY(-3px);
         }
     </style>
 </head>
@@ -247,10 +364,10 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg py-1 sticky-top">
         <div class="container">
-          <a class="navbar-brand" href="#">
-            <img src="images/logo-circle.jpeg" alt="" class="img-fluid" style="width: 100px; height: 100px; border-radius: 50%;">
+          <a class="navbar-brand" href="/index.html">
+            <img src="images/logo-circle.jpeg" alt="AYSA Kent Logo" class="img-fluid" style="width: 100px; height: 100px; border-radius: 50%;">
           </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
@@ -463,10 +580,10 @@
                     <p>ali.Abdulla@africanysa.org<br>
                     (206) 355-9280</p>
                     <div class="social mt-3">
-                        <a href="https://www.facebook.com/africanysa/" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://www.instagram.com/africanysa/" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <a href="https://twitter.com/AfricanYSA" target="_blank"><i class="fab fa-twitter"></i></a>
-                        <a href="https://www.linkedin.com/company/africanysa/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.facebook.com/africanysa/" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/africanysa/" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+                        <a href="https://twitter.com/AfricanYSA" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.linkedin.com/company/africanysa/" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
             </div>
@@ -505,7 +622,118 @@
             return false;
         });
     </script>
+
+    <!-- Add this before the closing body tag -->
+    <div class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Add back to top functionality
+        const backToTop = document.querySelector('.back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+
+        backToTop.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+
+    <script>
+        // Enhanced Scroll Animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize AOS with enhanced settings
+            AOS.init({
+                duration: 1000,
+                easing: 'ease-in-out',
+                once: false,
+                mirror: true
+            });
+
+            // Parallax Effect for Page Header
+            window.addEventListener('scroll', function() {
+                const scrolled = window.pageYOffset;
+                const parallax = document.querySelector('.page-header');
+                parallax.style.backgroundPositionY = -(scrolled * 0.5) + 'px';
+            });
+
+            // Animated Counter for Impact Numbers
+            const counters = document.querySelectorAll('.impact-number');
+            const speed = 200;
+
+            function animateCounter(counter) {
+                const target = +counter.getAttribute('data-target');
+                const count = +counter.innerText;
+                const increment = target / speed;
+
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + increment);
+                    setTimeout(() => animateCounter(counter), 1);
+                } else {
+                    counter.innerText = target;
+                }
+            }
+
+            // Intersection Observer for Counter Animation
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounter(entry.target);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            counters.forEach(counter => observer.observe(counter));
+
+            // Enhanced Mission Card Hover Effects
+            const missionCards = document.querySelectorAll('.mission-card');
+            missionCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px) scale(1.02)';
+                });
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+
+            // Smooth Scroll for Navigation Links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Dynamic Background for Location Badges
+            const locationBadges = document.querySelectorAll('.location-badge');
+            locationBadges.forEach(badge => {
+                badge.addEventListener('mouseenter', function() {
+                    this.style.background = 'var(--gradient-gold)';
+                    this.style.color = 'var(--black)';
+                });
+                badge.addEventListener('mouseleave', function() {
+                    this.style.background = 'var(--dark-cream)';
+                    this.style.color = 'var(--black)';
+                });
+            });
+        });
+    </script>
 </body>
-</html>< ! - -   r e b u i l d   - - > 
- 
- 
+</html>
