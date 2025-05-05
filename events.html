@@ -13,16 +13,25 @@
     :root {
       --cream: #F5F5DC;
       --white: #FFFFFF;
-      --black: #000000;
+      --black: #1A1A1A;
       --gold: #D4AF37;
       --dark-cream: #E8E4C9;
       --light-gray: #F8F8F8;
+      --accent-blue: #2C3E50;
+      --accent-gold: #FDB813;
+      --gradient-gold: linear-gradient(135deg, #D4AF37 0%, #FDB813 100%);
+      --gradient-dark: linear-gradient(135deg, #1A1A1A 0%, #2C3E50 100%);
+      --text-primary: #2C3E50;
+      --text-secondary: #34495E;
+      --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+      --shadow-md: 0 4px 8px rgba(0,0,0,0.1);
+      --shadow-lg: 0 8px 16px rgba(0,0,0,0.15);
     }
 
     body {
       font-family: 'Outfit', sans-serif;
       background-color: var(--cream);
-      color: var(--black);
+      color: var(--text-primary);
       line-height: 1.6;
     }
 
@@ -33,40 +42,125 @@
 
     /* Header Styles */
     .navbar {
-      background-color: var(--white);
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       width: 100%;
       z-index: 1000;
-      box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .navbar.scrolled {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar-brand {
+      transition: transform 0.3s ease;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .navbar-brand:after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--gradient-gold);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    .navbar-brand:hover:after {
+      transform: scaleX(1);
     }
 
     .navbar-brand img {
-      height: 50px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .navbar-brand:hover img {
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      filter: brightness(1.05);
+      transform: scale(1.05);
     }
 
     .nav-link {
-      color: var(--black);
+      color: var(--text-primary);
       font-weight: 500;
       margin: 0 10px;
       padding: 8px 15px;
       transition: all 0.3s;
+      position: relative;
+      border-radius: 8px;
     }
 
-    .nav-link:hover, .nav-link.active {
-      color: var(--gold);
+    .nav-link:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background: var(--gradient-gold);
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover:after,
+    .nav-link.active:after {
+      width: 60%;
+    }
+
+    .nav-link:hover {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
     }
 
     .btn-register {
-      background-color: var(--black);
+      background: var(--gradient-dark);
       color: var(--white);
       border-radius: 30px;
       padding: 10px 25px;
       font-weight: 600;
       transition: all 0.3s;
+      border: none;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-register:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: all 0.5s ease;
+    }
+
+    .btn-register:hover:before {
+      left: 100%;
     }
 
     .btn-register:hover {
-      background-color: var(--gold);
+      background: var(--gradient-gold);
       color: var(--black);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
     }
 
     /* Hero Section */
@@ -101,35 +195,40 @@
     .event-card {
       background-color: var(--white);
       border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      padding: 30px;
+      box-shadow: var(--shadow-lg);
       margin-bottom: 30px;
-      transition: all 0.3s;
+      transition: all 0.3s ease;
     }
 
     .event-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-    }
-
-    .event-img {
-      height: 200px;
-      width: 100%;
-      object-fit: cover;
-    }
-
-    .event-body {
-      padding: 25px;
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
     }
 
     .event-date {
-      display: inline-block;
-      background-color: var(--gold);
+      background: var(--gradient-gold);
       color: var(--black);
-      padding: 5px 15px;
+      padding: 10px 20px;
       border-radius: 30px;
       font-weight: 600;
-      margin-bottom: 15px;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+
+    .event-image {
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .event-image img {
+      transition: all 0.3s ease;
+    }
+
+    .event-card:hover .event-image img {
+      transform: scale(1.05);
     }
 
     .event-title {
@@ -153,25 +252,180 @@
     }
 
     .btn-event {
-      background-color: var(--black);
+      background: var(--gradient-dark);
       color: var(--white);
       border-radius: 30px;
-      padding: 8px 20px;
+      padding: 10px 25px;
       font-weight: 600;
       transition: all 0.3s;
       border: none;
-      display: inline-block;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn-event:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: all 0.5s ease;
+    }
+
+    .btn-event:hover:before {
+      left: 100%;
     }
 
     .btn-event:hover {
-      background-color: var(--gold);
+      background: var(--gradient-gold);
       color: var(--black);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
     }
 
     /* Calendar Section */
     .calendar-section {
       padding: 60px 0;
       background-color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .calendar-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .calendar-view-toggle {
+      display: flex;
+      gap: 10px;
+    }
+
+    .calendar-view-btn {
+      background: var(--cream);
+      border: none;
+      padding: 8px 15px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-weight: 500;
+    }
+
+    .calendar-view-btn.active {
+      background: var(--gradient-gold);
+      color: var(--black);
+    }
+
+    .calendar-view-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .past-event {
+      opacity: 0.7;
+      position: relative;
+    }
+
+    .past-event::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+    }
+
+    .past-event .calendar-event {
+      background-color: var(--dark-cream);
+    }
+
+    .event-history {
+      position: fixed;
+      top: 0;
+      right: -400px;
+      width: 400px;
+      height: 100vh;
+      background: var(--white);
+      box-shadow: var(--shadow-lg);
+      padding: 30px;
+      transition: all 0.3s ease;
+      z-index: 1000;
+      overflow-y: auto;
+    }
+
+    .event-history.show {
+      right: 0;
+    }
+
+    .event-history-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .event-history-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      background: var(--gradient-gold);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .event-history-close {
+      background: var(--cream);
+      border: none;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .event-history-close:hover {
+      background: var(--gold);
+      transform: rotate(90deg);
+    }
+
+    .event-history-item {
+      background: var(--cream);
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 15px;
+      transition: all 0.3s;
+    }
+
+    .event-history-item:hover {
+      transform: translateX(5px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .event-history-date {
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: 5px;
+    }
+
+    .event-history-title {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+
+    .event-history-details {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
     }
 
     .calendar-header {
@@ -179,10 +433,16 @@
       justify-content: space-between;
       align-items: center;
       margin-bottom: 30px;
+      position: relative;
+      z-index: 1;
     }
 
     .calendar-title {
       font-size: 2rem;
+      background: var(--gradient-gold);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: fadeInUp 0.5s ease;
     }
 
     .calendar-nav {
@@ -200,48 +460,285 @@
       align-items: center;
       justify-content: center;
       transition: all 0.3s;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
     }
 
-    .calendar-nav-btn:hover {
-      background-color: var(--gold);
+    .calendar-nav-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: var(--gradient-gold);
+      transition: all 0.3s;
+      opacity: 0;
+    }
+
+    .calendar-nav-btn:hover::before {
+      left: 0;
+      opacity: 1;
+    }
+
+    .calendar-nav-btn i {
+      position: relative;
+      z-index: 1;
+      transition: all 0.3s;
+    }
+
+    .calendar-nav-btn:hover i {
+      color: var(--black);
+      transform: scale(1.2);
     }
 
     .calendar-grid {
       display: grid;
       grid-template-columns: repeat(7, 1fr);
       gap: 10px;
+      position: relative;
+      z-index: 1;
     }
 
     .calendar-day-header {
       text-align: center;
       font-weight: 600;
-      padding: 10px;
+      padding: 15px 10px;
       color: var(--gold);
+      background: var(--cream);
+      border-radius: 10px;
+      transition: all 0.3s;
     }
 
     .calendar-day {
       background-color: var(--cream);
       border-radius: 10px;
-      padding: 10px;
+      padding: 15px;
       min-height: 100px;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .calendar-day::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--gradient-gold);
+      opacity: 0;
+      transition: all 0.3s;
+    }
+
+    .calendar-day:hover::before {
+      opacity: 0.1;
     }
 
     .calendar-day.empty {
       background-color: transparent;
+      pointer-events: none;
+    }
+
+    .calendar-day.today {
+      background: var(--gradient-gold);
+      color: var(--black);
+    }
+
+    .calendar-day.today .calendar-day-number {
+      color: var(--black);
+    }
+
+    .calendar-day.has-event {
+      cursor: pointer;
+      position: relative;
+      overflow: visible;
+    }
+
+    .calendar-day.has-event::before {
+      content: '';
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      width: 12px;
+      height: 12px;
+      background: var(--gradient-gold);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--gold);
+      animation: pulse 2s infinite;
+    }
+
+    .calendar-day.has-event.sports::before {
+      background: var(--gradient-gold);
+    }
+
+    .calendar-day.has-event.lecture::before {
+      background: var(--accent-blue);
+    }
+
+    .calendar-day.has-event.community::before {
+      background: var(--gold);
+    }
+
+    .calendar-day.has-event:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .calendar-day.has-event:hover::before {
+      transform: scale(1.2);
     }
 
     .calendar-day-number {
       font-weight: 600;
-      margin-bottom: 5px;
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+      transition: all 0.3s;
     }
 
     .calendar-event {
       background-color: var(--gold);
       color: var(--black);
       font-size: 0.8rem;
-      padding: 3px 6px;
+      padding: 5px 8px;
       border-radius: 5px;
       margin-bottom: 5px;
+      transition: all 0.3s;
+      transform: translateY(10px);
+      opacity: 0;
+      animation: fadeInUp 0.3s ease forwards;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .calendar-event::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--gradient-gold);
+    }
+
+    .calendar-event.sports {
+      background-color: var(--cream);
+      border-left: 4px solid var(--gold);
+    }
+
+    .calendar-event.lecture {
+      background-color: var(--cream);
+      border-left: 4px solid var(--accent-blue);
+    }
+
+    .calendar-event.community {
+      background-color: var(--cream);
+      border-left: 4px solid var(--gold);
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.2);
+        opacity: 0.8;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .event-type-indicator {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      display: flex;
+      gap: 5px;
+    }
+
+    .event-type-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+
+    .event-type-dot.sports {
+      background: var(--gradient-gold);
+    }
+
+    .event-type-dot.lecture {
+      background: var(--accent-blue);
+    }
+
+    .event-type-dot.community {
+      background: var(--gold);
+    }
+
+    .event-popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.9);
+      background: var(--white);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: var(--shadow-lg);
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s;
+      max-width: 500px;
+      width: 90%;
+    }
+
+    .event-popup.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .event-popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(5px);
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s;
+    }
+
+    .event-popup-overlay.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .event-popup-close {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .event-popup-close:hover {
+      background: var(--gold);
+      transform: rotate(90deg);
     }
 
     /* Newsletter Section */
@@ -279,7 +776,7 @@
 
     /* Footer */
     footer {
-      background-color: var(--black);
+      background: var(--gradient-dark);
       color: var(--white);
       padding: 80px 0 30px;
     }
@@ -288,6 +785,9 @@
       font-size: 1.8rem;
       font-weight: 700;
       margin-bottom: 20px;
+      background: var(--gradient-gold);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     .social-icons a {
@@ -298,7 +798,7 @@
     }
 
     .social-icons a:hover {
-      color: var(--gold);
+      color: var(--accent-gold);
       transform: translateY(-5px);
     }
 
@@ -306,6 +806,9 @@
     @media (max-width: 992px) {
       .events-hero h1 {
         font-size: 2.8rem;
+      }
+      .event-card {
+        padding: 25px;
       }
     }
 
@@ -325,6 +828,56 @@
       .calendar-day-header {
         display: none;
       }
+      .event-card {
+        padding: 20px;
+      }
+      .event-date {
+        padding: 8px 15px;
+      }
+    }
+
+    /* Add this to the CSS section */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background: var(--gradient-gold);
+      color: var(--black);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px);
+      transition: all 0.3s ease;
+      box-shadow: var(--shadow-md);
+      z-index: 999;
+    }
+
+    .back-to-top.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .back-to-top:hover {
+      transform: translateY(-5px) rotate(360deg);
+      box-shadow: var(--shadow-lg);
+      background: var(--gradient-dark);
+      color: var(--white);
+    }
+
+    .back-to-top i {
+      transition: transform 0.3s ease;
+    }
+
+    .back-to-top:hover i {
+      transform: translateY(-3px);
     }
   </style>
 </head>
@@ -335,7 +888,7 @@
     <a class="navbar-brand" href="#">
       <img src="images/logo-circle.jpeg" alt="" class="img-fluid" style="width: 100px; height: 100px; border-radius: 50%;">
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
@@ -437,131 +990,47 @@
 <!-- Calendar Section -->
 <section class="calendar-section" id="calendar">
   <div class="container">
+    <div class="calendar-controls">
+      <div class="calendar-view-toggle">
+        <button class="calendar-view-btn active" data-view="current">Current Month</button>
+        <button class="calendar-view-btn" data-view="past">Past Events</button>
+      </div>
+      <button class="calendar-view-btn" id="view-history">View History</button>
+    </div>
     <div class="calendar-header">
       <h2 class="calendar-title">June 2024</h2>
       <div class="calendar-nav">
-        <button class="calendar-nav-btn"><i class="fas fa-chevron-left"></i></button>
-        <button class="calendar-nav-btn"><i class="fas fa-chevron-right"></i></button>
+        <button class="calendar-nav-btn" id="prev-month" aria-label="Previous month"><i class="fas fa-chevron-left"></i></button>
+        <button class="calendar-nav-btn" id="next-month" aria-label="Next month"><i class="fas fa-chevron-right"></i></button>
       </div>
     </div>
     
-    <div class="calendar-grid">
-      <div class="calendar-day-header">Sun</div>
-      <div class="calendar-day-header">Mon</div>
-      <div class="calendar-day-header">Tue</div>
-      <div class="calendar-day-header">Wed</div>
-      <div class="calendar-day-header">Thu</div>
-      <div class="calendar-day-header">Fri</div>
-      <div class="calendar-day-header">Sat</div>
-      
-      <div class="calendar-day empty"></div>
-      <div class="calendar-day empty"></div>
-      <div class="calendar-day empty"></div>
-      <div class="calendar-day empty"></div>
-      <div class="calendar-day empty"></div>
-      <div class="calendar-day">
-        <div class="calendar-day-number">1</div>
-      </div>
-      <div class="calendar-day">
-        <div class="calendar-day-number">2</div>
-      </div>
-      <div class="calendar-day">
-        <div class="calendar-day-number">3</div>
-        <div class="calendar-event">Soccer Practice</div>
-      </div>
-      <div class="calendar-day">
-        <div class="calendar-day-number">4</div>
-      </div>
-      <div class="calendar-day">
-        <div class="calendar-day-number">5</div>
-        <div class="calendar-event">Swimming Lessons</div>
-      </div>
-      <div class="calendar-day">
-        <div class="calendar-day-number">6</div>
-      </div>
-      <div class="calendar-day">
-        <div class="calendar-day-number">7</div>
-        <div class="calendar-event">Basketball Tryouts</div>
-      </div>
-      <div class="calendar-day">
-        <div class="calendar-day-number">8</div>
-      </div>
-      <div class="calendar-day">
-        <div class="calendar-day-number">9</div>
-      </div>
-      <div class="calendar-day">
-        <div class="calendar-day-number">10</div>
-        <div class="calendar-event">Volleyball Clinic</div>
-      </div>
-      <div class="calendar-day">
-        <div class="calendar-day-number">11</div>
-      </div>
-      <div class="calendar-day">
-        <div class="calendar-day-number">12</div>
-      </div>
-      <div class="calendar-day">
-        <div class="calendar-day-number">13</div>
-        <div class="calendar-event">Track Practice</div>
-      </div>
-      <div class="calendar-day">
-        <div class="calendar-day-number">14</div>
-      </div>
-      <div class="calendar-day">
-        <div class="calendar-day-number">15</div>
-        <div class="calendar-event">Soccer Tournament</div>
-      </div>
-      <div class="calendar-day">
-        <div class="calendar-day-number">16</div>
-      </div>
-      <div class="calendar-day">
-        <div class="calendar-day-number">17</div>
-      </div>
-      <div class="calendar-day">
-        <div class="calendar-day-number">18</div>
-        <div class="calendar-event">Parent Meeting</div>
-      </div>
-      <div class="calendar-day">
-        <div class="calendar-day-number">19</div>
-      </div>
-      <div class="calendar-day">
-        <div class="calendar-day-number">20</div>
-      </div>
-      <div class="calendar-day">
-        <div class="calendar-day-number">21</div>
-      </div>
-      <div class="calendar-day">
-        <div class="calendar-day-number">22</div>
-        <div class="calendar-event">Community Day</div>
-      </div>
-      <div class="calendar-day">
-        <div class="calendar-day-number">23</div>
-      </div>
-      <div class="calendar-day">
-        <div class="calendar-day-number">24</div>
-      </div>
-      <div class="calendar-day">
-        <div class="calendar-day-number">25</div>
-        <div class="calendar-event">Swim Meet</div>
-      </div>
-      <div class="calendar-day">
-        <div class="calendar-day-number">26</div>
-      </div>
-      <div class="calendar-day">
-        <div class="calendar-day-number">27</div>
-      </div>
-      <div class="calendar-day">
-        <div class="calendar-day-number">28</div>
-        <div class="calendar-event">Basketball Game</div>
-      </div>
-      <div class="calendar-day">
-        <div class="calendar-day-number">29</div>
-      </div>
-      <div class="calendar-day">
-        <div class="calendar-day-number">30</div>
-      </div>
+    <div class="calendar-grid" id="calendar-grid">
+      <!-- Calendar days will be generated by JavaScript -->
     </div>
   </div>
 </section>
+
+<div class="event-history">
+  <div class="event-history-header">
+    <h3 class="event-history-title">Event History</h3>
+    <button class="event-history-close"><i class="fas fa-times"></i></button>
+  </div>
+  <div id="event-history-list">
+    <!-- Event history items will be generated by JavaScript -->
+  </div>
+</div>
+
+<div class="event-popup-overlay"></div>
+<div class="event-popup">
+  <button class="event-popup-close"><i class="fas fa-times"></i></button>
+  <h3 class="event-popup-title"></h3>
+  <div class="event-popup-date"></div>
+  <div class="event-popup-time"></div>
+  <div class="event-popup-location"></div>
+  <div class="event-popup-description"></div>
+  <a href="#" class="btn-event event-popup-register">Register</a>
+</div>
 
 <!-- Newsletter Section -->
 <section class="newsletter-section">
@@ -602,6 +1071,10 @@
   </div>
 </footer>
 
+<div class="back-to-top">
+    <i class="fas fa-arrow-up"></i>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
   // Simple JavaScript for smooth scrolling
@@ -613,10 +1086,315 @@
       });
     });
   });
+
+  // Add back to top functionality
+  const backToTop = document.querySelector('.back-to-top');
+  
+  window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) {
+      backToTop.classList.add('show');
+    } else {
+      backToTop.classList.remove('show');
+    }
+  });
+
+  backToTop.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+
+  // Calendar data
+  const events = {
+    '2024-06-03': {
+      title: 'Soccer Practice',
+      time: '4:00 PM - 6:00 PM',
+      location: 'Kent Soccer Fields',
+      description: 'Regular practice session for all age groups.',
+      type: 'sports'
+    },
+    '2024-06-05': {
+      title: 'Swimming Lessons',
+      time: '3:30 PM - 5:00 PM',
+      location: 'Kent Aquatic Center',
+      description: 'Beginner and intermediate swimming lessons.',
+      type: 'sports'
+    },
+    '2024-06-07': {
+      title: 'Basketball Tryouts',
+      time: '5:00 PM - 7:00 PM',
+      location: 'Kent High School Gym',
+      description: 'Tryouts for the upcoming basketball season.',
+      type: 'sports'
+    },
+    '2024-06-10': {
+      title: 'Volleyball Clinic',
+      time: '4:30 PM - 6:30 PM',
+      location: 'Kent Community Center',
+      description: 'Skills development clinic for all levels.',
+      type: 'sports'
+    },
+    '2024-06-13': {
+      title: 'Track Practice',
+      time: '4:00 PM - 6:00 PM',
+      location: 'Kent High School Track',
+      description: 'Training session for track and field athletes.',
+      type: 'sports'
+    },
+    '2024-06-15': {
+      title: 'Soccer Tournament',
+      time: '9:00 AM - 5:00 PM',
+      location: 'Kent Soccer Fields',
+      description: 'Annual youth soccer tournament featuring teams from across the region.',
+      type: 'sports'
+    },
+    '2024-06-18': {
+      title: 'Parent Meeting',
+      time: '6:00 PM - 7:30 PM',
+      location: 'AYSA Office',
+      description: 'Monthly parent meeting to discuss upcoming events and programs.',
+      type: 'lecture'
+    },
+    '2024-06-22': {
+      title: 'Community Day',
+      time: '10:00 AM - 2:00 PM',
+      location: 'Kent Community Park',
+      description: 'Family-friendly event with games, food, and activities.',
+      type: 'community'
+    },
+    '2024-06-25': {
+      title: 'Swim Meet',
+      time: '8:00 AM - 4:00 PM',
+      location: 'Kent Aquatic Center',
+      description: 'Competitive swim meet for all age groups.',
+      type: 'sports'
+    },
+    '2024-06-28': {
+      title: 'Basketball Game',
+      time: '6:00 PM - 8:00 PM',
+      location: 'Kent High School Gym',
+      description: 'AYSA vs. Local Rivals basketball game.',
+      type: 'sports'
+    }
+  };
+
+  // Calendar functionality
+  const calendarGrid = document.getElementById('calendar-grid');
+  const prevMonthBtn = document.getElementById('prev-month');
+  const nextMonthBtn = document.getElementById('next-month');
+  const calendarTitle = document.querySelector('.calendar-title');
+  const eventPopup = document.querySelector('.event-popup');
+  const eventPopupOverlay = document.querySelector('.event-popup-overlay');
+  const eventPopupClose = document.querySelector('.event-popup-close');
+  const viewHistoryBtn = document.getElementById('view-history');
+  const eventHistory = document.querySelector('.event-history');
+  const eventHistoryClose = document.querySelector('.event-history-close');
+  const eventHistoryList = document.getElementById('event-history-list');
+  const calendarViewBtns = document.querySelectorAll('.calendar-view-btn[data-view]');
+
+  let currentDate = new Date(2024, 5, 1); // June 2024
+  let currentView = 'current';
+
+  function isPastEvent(date) {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    return date < today;
+  }
+
+  function generateCalendar() {
+    calendarGrid.innerHTML = '';
+    
+    // Add day headers
+    const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    days.forEach(day => {
+      const dayHeader = document.createElement('div');
+      dayHeader.className = 'calendar-day-header';
+      dayHeader.textContent = day;
+      calendarGrid.appendChild(dayHeader);
+    });
+
+    // Get first day of month
+    const firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+    const startingDay = firstDay.getDay();
+
+    // Add empty cells for days before the first day
+    for (let i = 0; i < startingDay; i++) {
+      const emptyDay = document.createElement('div');
+      emptyDay.className = 'calendar-day empty';
+      calendarGrid.appendChild(emptyDay);
+    }
+
+    // Get number of days in month
+    const daysInMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
+
+    // Add days
+    for (let i = 1; i <= daysInMonth; i++) {
+      const day = document.createElement('div');
+      day.className = 'calendar-day';
+      
+      const date = new Date(currentDate.getFullYear(), currentDate.getMonth(), i);
+      const dateString = date.toISOString().split('T')[0];
+      
+      // Check if today
+      const today = new Date();
+      if (date.toDateString() === today.toDateString()) {
+        day.classList.add('today');
+      }
+      
+      // Check if past event
+      if (isPastEvent(date)) {
+        day.classList.add('past-event');
+      }
+      
+      // Check if has event
+      if (events[dateString]) {
+        day.classList.add('has-event', events[dateString].type);
+        
+        // Add event type indicators
+        const typeIndicator = document.createElement('div');
+        typeIndicator.className = 'event-type-indicator';
+        const typeDot = document.createElement('div');
+        typeDot.className = `event-type-dot ${events[dateString].type}`;
+        typeIndicator.appendChild(typeDot);
+        day.appendChild(typeIndicator);
+        
+        day.addEventListener('click', () => showEventPopup(events[dateString], date));
+      }
+      
+      const dayNumber = document.createElement('div');
+      dayNumber.className = 'calendar-day-number';
+      dayNumber.textContent = i;
+      day.appendChild(dayNumber);
+      
+      if (events[dateString]) {
+        const event = document.createElement('div');
+        event.className = `calendar-event ${events[dateString].type}`;
+        event.textContent = events[dateString].title;
+        day.appendChild(event);
+      }
+      
+      calendarGrid.appendChild(day);
+    }
+  }
+
+  function updateEventHistory() {
+    eventHistoryList.innerHTML = '';
+    const sortedEvents = Object.entries(events)
+      .sort(([dateA], [dateB]) => new Date(dateB) - new Date(dateA));
+    
+    sortedEvents.forEach(([date, event]) => {
+      const eventDate = new Date(date);
+      const historyItem = document.createElement('div');
+      historyItem.className = 'event-history-item';
+      
+      historyItem.innerHTML = `
+        <div class="event-history-date">${eventDate.toLocaleDateString('en-US', { 
+          weekday: 'long', 
+          month: 'long', 
+          day: 'numeric' 
+        })}</div>
+        <div class="event-history-title">${event.title}</div>
+        <div class="event-history-details">
+          <div><i class="fas fa-clock"></i> ${event.time}</div>
+          <div><i class="fas fa-map-marker-alt"></i> ${event.location}</div>
+        </div>
+      `;
+      
+      historyItem.addEventListener('click', () => showEventPopup(event, eventDate));
+      eventHistoryList.appendChild(historyItem);
+    });
+  }
+
+  function toggleEventHistory() {
+    eventHistory.classList.toggle('show');
+  }
+
+  function updateView() {
+    calendarViewBtns.forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.view === currentView);
+    });
+    
+    const calendarDays = document.querySelectorAll('.calendar-day');
+    calendarDays.forEach(day => {
+      if (currentView === 'past') {
+        day.style.display = day.classList.contains('past-event') ? 'block' : 'none';
+      } else {
+        day.style.display = 'block';
+      }
+    });
+  }
+
+  // Event listeners
+  calendarViewBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      currentView = btn.dataset.view;
+      updateView();
+    });
+  });
+
+  viewHistoryBtn.addEventListener('click', toggleEventHistory);
+  eventHistoryClose.addEventListener('click', toggleEventHistory);
+
+  // Initialize
+  updateEventHistory();
+  generateCalendar();
+  updateView();
+
+  function showEventPopup(event, date) {
+    const popup = document.querySelector('.event-popup');
+    const overlay = document.querySelector('.event-popup-overlay');
+    
+    popup.querySelector('.event-popup-title').textContent = event.title;
+    popup.querySelector('.event-popup-date').textContent = date.toLocaleDateString('en-US', { 
+      weekday: 'long', 
+      month: 'long', 
+      day: 'numeric' 
+    });
+    popup.querySelector('.event-popup-time').textContent = event.time;
+    popup.querySelector('.event-popup-location').textContent = event.location;
+    popup.querySelector('.event-popup-description').textContent = event.description;
+    
+    overlay.classList.add('show');
+    popup.classList.add('show');
+  }
+
+  function hideEventPopup() {
+    const popup = document.querySelector('.event-popup');
+    const overlay = document.querySelector('.event-popup-overlay');
+    
+    overlay.classList.remove('show');
+    popup.classList.remove('show');
+  }
+
+  function updateCalendarTitle() {
+    calendarTitle.textContent = currentDate.toLocaleDateString('en-US', { 
+      month: 'long', 
+      year: 'numeric' 
+    });
+  }
+
+  prevMonthBtn.addEventListener('click', () => {
+    currentDate.setMonth(currentDate.getMonth() - 1);
+    updateCalendarTitle();
+    generateCalendar();
+  });
+
+  nextMonthBtn.addEventListener('click', () => {
+    currentDate.setMonth(currentDate.getMonth() + 1);
+    updateCalendarTitle();
+    generateCalendar();
+  });
+
+  eventPopupClose.addEventListener('click', hideEventPopup);
+  eventPopupOverlay.addEventListener('click', hideEventPopup);
+
+  // Add animation to calendar days
+  const calendarDays = document.querySelectorAll('.calendar-day');
+  calendarDays.forEach((day, index) => {
+    day.style.animationDelay = `${index * 0.05}s`;
+  });
 </script>
 </body>
-</html>< ! - -   r e b u i l d   - - > 
- 
- < ! - -   r e b u i l d   - - > 
- 
- 
+</html>
