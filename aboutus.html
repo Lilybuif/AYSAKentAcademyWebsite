@@ -33,6 +33,7 @@
         }
         
         /* Header Styles */
+<<<<<<< HEAD
         .navbar {
             background-color: var(--white);
             box-shadow: 0 2px 15px rgba(0,0,0,0.1);
@@ -114,6 +115,130 @@
             color: var(--black);
             transform: translateY(-2px);
         }
+=======
+    .navbar {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      width: 100%;
+      z-index: 1000;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .navbar.scrolled {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar-brand {
+      transition: transform 0.3s ease;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .navbar-brand:after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--gradient-gold);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    .navbar-brand:hover:after {
+      transform: scaleX(1);
+    }
+
+    .navbar-brand img {
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .navbar-brand:hover img {
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      filter: brightness(1.05);
+      transform: scale(1.05);
+    }
+
+    .nav-link {
+      color: var(--text-primary);
+      font-weight: 500;
+      margin: 0 10px;
+      padding: 8px 15px;
+      transition: all 0.3s;
+      position: relative;
+      border-radius: 8px;
+    }
+
+    .nav-link:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background: var(--gradient-gold);
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover:after,
+    .nav-link.active:after {
+      width: 60%;
+    }
+
+    .nav-link:hover {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+    }
+
+    .btn-register {
+      background: var(--gradient-dark);
+      color: var(--white);
+      border-radius: 30px;
+      padding: 10px 25px;
+      font-weight: 600;
+      transition: all 0.3s;
+      border: none;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-register:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: all 0.5s ease;
+    }
+
+    .btn-register:hover:before {
+      left: 100%;
+    }
+
+    .btn-register:hover {
+      background: var(--gradient-gold);
+      color: var(--black);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+
+>>>>>>> e638689 (Update website code)
         
         /* Page Header */
         .page-header {
@@ -290,6 +415,7 @@
             margin-bottom: 15px;
         }
         
+<<<<<<< HEAD
         /* Footer */
         footer {
             background-color: var(--black);
@@ -305,15 +431,66 @@
         }
         
         .social a {
+=======
+        /* Enhanced Footer */
+        footer {
+            background: var(--gradient-dark);
+            color: var(--white);
+            padding: 80px 0 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></svg>');
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .social-icons a {
+>>>>>>> e638689 (Update website code)
             color: var(--white);
             font-size: 1.2rem;
             margin: 0 10px;
             transition: all 0.3s;
+<<<<<<< HEAD
         }
         
         .social a:hover {
             color: var(--gold);
             transform: translateY(-3px);
+=======
+            position: relative;
+            display: inline-block;
+        }
+
+        .social-icons a::before {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 0.3s ease;
+        }
+
+        .social-icons a:hover::before {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .social-icons a:hover {
+            color: var(--accent-gold);
+            transform: translateY(-5px) rotate(360deg);
+>>>>>>> e638689 (Update website code)
         }
         
         .back-to-top {
@@ -364,7 +541,11 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg py-1 sticky-top">
         <div class="container">
+<<<<<<< HEAD
           <a class="navbar-brand" href="/index.html">
+=======
+          <a class="navbar-brand" href="index.html">
+>>>>>>> e638689 (Update website code)
             <img src="images/logo-circle.jpeg" alt="AYSA Kent Logo" class="img-fluid" style="width: 100px; height: 100px; border-radius: 50%;">
           </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation">
@@ -557,6 +738,7 @@
     </div>
 
     <!-- Footer -->
+<<<<<<< HEAD
     <footer>
         <a href="#" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
         <div class="container">
@@ -593,6 +775,25 @@
             </div>
         </div>
     </footer>
+=======
+<footer>
+    <div class="container">
+      <div class="row justify-content-center text-center">
+        <div class="col-lg-6">
+          <div class="footer-logo">AYSA Kent</div>
+          <p>Contact: ali.Abdulla@africanysa.org | 206-355-9280</p>
+          <div class="social-icons mb-4">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+          <p><small>© 2024 African Youth Sports Academy - AYSA Kent</small></p>
+        </div>
+      </div>
+    </div>
+  </footer>
+>>>>>>> e638689 (Update website code)
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

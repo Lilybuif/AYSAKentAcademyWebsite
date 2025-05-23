@@ -489,6 +489,7 @@
       color: var(--gold);
       transform: scale(1.2);
     }
+<<<<<<< HEAD
 
     /* Footer */
     footer {
@@ -514,6 +515,59 @@
       color: var(--gold);
       transform: translateY(-5px);
     }
+=======
+/* Enhanced Footer */
+footer {
+            background: var(--gradient-dark);
+            color: var(--white);
+            padding: 80px 0 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></svg>');
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .social-icons a {
+            color: var(--white);
+            font-size: 1.2rem;
+            margin: 0 10px;
+            transition: all 0.3s;
+            position: relative;
+            display: inline-block;
+        }
+
+        .social-icons a::before {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 0.3s ease;
+        }
+
+        .social-icons a:hover::before {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .social-icons a:hover {
+            color: var(--accent-gold);
+            transform: translateY(-5px) rotate(360deg);
+        }
+>>>>>>> e638689 (Update website code)
 
     /* Responsive Styles */
     @media (max-width: 992px) {
@@ -607,16 +661,27 @@
           <a class="nav-link" href="index.html">Home</a>
         </li>
         <li class="nav-item">
+<<<<<<< HEAD
           <a class="nav-link active" href="aboutus.html">About Us</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="index.html">Programs</a>
+=======
+          <a class="nav-link" href="aboutus.html">About Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#programs">Programs</a>
+>>>>>>> e638689 (Update website code)
         </li>
         <li class="nav-item">
           <a class="nav-link" href="donation.html">Donate</a>
         </li>
         <li class="nav-item">
+<<<<<<< HEAD
           <a class="nav-link " href="events.html">Events</a>
+=======
+          <a class="nav-link" href="events.html">Events</a>
+>>>>>>> e638689 (Update website code)
         </li>
         <li class="nav-item">
           <a class="nav-link" href="contactus.html">Contact Us</a>
