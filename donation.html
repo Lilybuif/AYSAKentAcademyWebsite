@@ -541,20 +541,58 @@
       }
     }
 
-    /* Footer Styles */
+    /* Enhanced Footer */
     footer {
-      background-color: var(--black);
-      color: var(--white);
-      padding: 60px 0 30px;
-      position: relative;
-    }
+            background: var(--gradient-dark);
+            color: var(--white);
+            padding: 80px 0 30px;
+            position: relative;
+            overflow: hidden;
+        }
 
-    .footer-logo {
-      font-size: 1.8rem;
-      font-weight: 700;
-      margin-bottom: 20px;
-    }
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></svg>');
+            opacity: 0.1;
+            z-index: 0;
+        }
 
+        .social-icons a {
+            color: var(--white);
+            font-size: 1.2rem;
+            margin: 0 10px;
+            transition: all 0.3s;
+            position: relative;
+            display: inline-block;
+        }
+
+        .social-icons a::before {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 0.3s ease;
+        }
+
+        .social-icons a:hover::before {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .social-icons a:hover {
+            color: var(--accent-gold);
+            transform: translateY(-5px) rotate(360deg);
+        }
+        
     .social a {
       color: var(--white);
       font-size: 1.2rem;
@@ -608,8 +646,8 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg py-1 sticky-top">
     <div class="container">
-      <a class="navbar-brand" href="#">
-        <img src="images/logo-circle.jpeg" alt="" class="img-fluid" style="width: 100px; height: 100px; border-radius: 50%;">
+      <a class="navbar-brand" href="index.html">
+        <img src="images/logo-circle.jpeg" alt="AYSA Kent Logo" class="img-fluid" style="width: 100px; height: 100px; border-radius: 50%;">
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
@@ -790,43 +828,24 @@
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer>
-    <a href="#" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-4">
-          <div class="footer-logo">AYSA Kent</div>
-          <p>African Youth Sports Academy serving South King County</p>
-          <p>20804 International Blvd<br>SeaTac, WA 98198</p>
+ <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row justify-content-center text-center">
+      <div class="col-lg-6">
+        <div class="footer-logo">AYSA Kent</div>
+        <p>Contact: ali.Abdulla@africanysa.org | 206-355-9280</p>
+        <div class="social-icons mb-4">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
         </div>
-        <div class="col-lg-4">
-          <h5>Quick Links</h5>
-          <ul class="list-unstyled">
-            <li><a href="about.html" class="text-white">About Us</a></li>
-            <li><a href="programs.html" class="text-white">Programs</a></li>
-            <li><a href="registration.html" class="text-white">Registration</a></li>
-            <li><a href="contact.html" class="text-white">Contact</a></li>
-          </ul>
-        </div>
-        <div class="col-lg-4">
-          <h5>Contact</h5>
-          <p>ali.Abdulla@africanysa.org<br>
-          (206) 355-9280</p>
-          <div class="social mt-3">
-            <a href="https://www.facebook.com/africanysa/" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://www.instagram.com/africanysa/" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
-            <a href="https://twitter.com/AfricanYSA" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a>
-            <a href="https://www.linkedin.com/company/africanysa/" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
-          </div>
-        </div>
-      </div>
-      <hr class="bg-light my-4">
-      <div class="text-center">
-        <p class="mb-0">&copy; 2024 African Youth Sports Academy - AYSA Kent. All rights reserved.</p>
+        <p><small>© 2024 African Youth Sports Academy - AYSA Kent</small></p>
       </div>
     </div>
-  </footer>
+  </div>
+</footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
