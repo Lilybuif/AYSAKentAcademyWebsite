@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - AYSA Kent | African Youth Sports Academy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #F5F5DC;
+            --white: #FFFFFF;
+            --black: #000000;
+            --gold: #D4AF37;
+            --dark-cream: #E8E4C9;
+            --gradient-gold: linear-gradient(135deg, #D4AF37, #F5D76E);
+            --gradient-dark: linear-gradient(135deg, #000000, #333333);
+            --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 6px 12px rgba(0, 0, 0, 0.15);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--cream);
+            color: var(--black);
+            line-height: 1.6;
+        }
+        
+        /* Header Styles */
+    .navbar {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      width: 100%;
+      z-index: 1000;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .navbar.scrolled {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar-brand {
+      transition: transform 0.3s ease;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .navbar-brand:after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--gradient-gold);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    .navbar-brand:hover:after {
+      transform: scaleX(1);
+    }
+
+    .navbar-brand img {
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .navbar-brand:hover img {
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      filter: brightness(1.05);
+      transform: scale(1.05);
+    }
+
+    .nav-link {
+      color: var(--text-primary);
+      font-weight: 500;
+      margin: 0 10px;
+      padding: 8px 15px;
+      transition: all 0.3s;
+      position: relative;
+      border-radius: 8px;
+    }
+
+    .nav-link:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background: var(--gradient-gold);
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover:after,
+    .nav-link.active:after {
+      width: 60%;
+    }
+
+    .nav-link:hover {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+    }
+
+    .btn-register {
+      background: var(--gradient-dark);
+      color: var(--white);
+      border-radius: 30px;
+      padding: 10px 25px;
+      font-weight: 600;
+      transition: all 0.3s;
+      border: none;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-register:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: all 0.5s ease;
+    }
+
+    .btn-register:hover:before {
+      left: 100%;
+    }
+
+    .btn-register:hover {
+      background: var(--gradient-gold);
+      color: var(--black);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+
+        
+        /* Page Header */
+        .page-header {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('images/about-hero.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            padding: 150px 0;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+        
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(212, 175, 55, 0.2), rgba(0, 0, 0, 0.7));
+            z-index: 1;
+        }
+        
+        .page-header h1 {
+            position: relative;
+            z-index: 2;
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: fadeInDown 1s ease;
+        }
+        
+        /* About Page */
+        .about-section {
+            padding: 80px 0;
+        }
+        
+        .mission-card {
+            background-color: var(--white);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 30px;
+            height: 100%;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .mission-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient-gold);
+            transform: scaleX(0);
+            transition: transform 0.5s ease;
+        }
+        
+        .mission-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .mission-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .mission-card i {
+            color: var(--gold);
+            font-size: 2rem;
+            margin-bottom: 20px;
+            transition: transform 0.5s ease;
+        }
+        
+        .mission-card:hover i {
+            transform: rotate(360deg);
+        }
+        
+        /* African Organization Highlight - CHANGED BACKGROUND TO WHITE */
+        .african-org-highlight {
+            background-color: var(--white); /* Changed from gold to white */
+            border: 2px solid var(--gold); /* Added gold border */
+            color: var(--black);
+            padding: 30px;
+            border-radius: 10px;
+            margin: 40px 0;
+        }
+        
+        .location-badge {
+            display: inline-block;
+            background-color: var(--dark-cream);
+            padding: 8px 20px;
+            border-radius: 30px;
+            margin: 5px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .location-badge:hover {
+            background: var(--gradient-gold);
+            color: var(--black);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .age-range {
+            font-weight: 600;
+            color: var(--gold);
+        }
+        
+        /* NEW TEAM SECTION STYLES */
+        .team-card {
+            background-color: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 30px;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+        
+        .team-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient-gold);
+            transform: scaleX(0);
+            transition: transform 0.5s ease;
+        }
+        
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .team-card:hover::after {
+            transform: scaleX(1);
+        }
+        
+        .team-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .team-card:hover .team-img {
+            transform: scale(1.1);
+        }
+        
+        .team-info {
+            padding: 20px;
+        }
+        
+        .team-name {
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .team-title {
+            color: var(--gold);
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+        
+        /* Enhanced Footer */
+        footer {
+            background: var(--gradient-dark);
+            color: var(--white);
+            padding: 80px 0 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></svg>');
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .social-icons a {
+            color: var(--white);
+            font-size: 1.2rem;
+            margin: 0 10px;
+            transition: all 0.3s;
+            position: relative;
+            display: inline-block;
+        }
+
+        .social-icons a::before {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 0.3s ease;
+        }
+
+        .social-icons a:hover::before {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .social-icons a:hover {
+            color: var(--accent-gold);
+            transform: translateY(-5px) rotate(360deg);
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-gold);
+            color: var(--black);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-5px) rotate(360deg);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            background: var(--gradient-dark);
+            color: var(--white);
+        }
+        
+        .back-to-top i {
+            transition: transform 0.3s ease;
+        }
+        
+        .back-to-top:hover i {
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg py-1 sticky-top">
+        <div class="container">
+          <a class="navbar-brand" href="index.html">
+            <img src="images/logo-circle.jpeg" alt="AYSA Kent Logo" class="img-fluid" style="width: 100px; height: 100px; border-radius: 50%;">
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="aboutus.html">About Us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">Programs</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="donation.html">Donate</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link " href="events.html">Events</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="contactus.html">Contact Us</a>
+              </li>
+            </ul>
+            <a href="registration.html" class="btn btn-register ms-lg-3 mt-3 mt-lg-0">Registration</a>
+          </div>
+        </div>
+      </nav>
+
+    <!-- About Us Page Header -->
+    <div class="page-header" data-aos="fade">
+        <div class="container text-center">
+            <h1>About AYSA Kent</h1>
+            <p class="lead">Empowering African youth through sports and education in South King County</p>
+        </div>
+    </div>
+
+    <div class="container about-section">
+        <!-- African Organization Highlight - Now with white background -->
+        <div class="african-org-highlight" data-aos="fade-up">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h2><i class="fas fa-flag me-2" style="color: var(--gold);"></i> African Youth Sports Organization</h2>
+                    <p class="mb-0">We are an African organization that offers sports programs to African youth ages <span class="age-range">2 to 16</span> throughout South King County - serving Kent, Tukwila, SeaTac, Renton, and surrounding communities. AYSA Kent Academy is a branch of African Youth Sports that does community work and plans sporting events.</p>
+                </div>
+                <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
+                    <div class="p-3 bg-cream rounded">
+                        <p class="mb-1"><strong>Our Headquarters:</strong></p>
+                        <p class="mb-0">20804 International Blvd<br>SeaTac, WA 98198</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" data-aos="fade-up">
+            <div class="col-lg-6">
+                <h2>Our Story</h2>
+                <p>AYSA Kent was founded in 2015 with the vision of creating a safe space for African youth to develop athletic skills while building character and community. What began as a small soccer program has grown into a comprehensive sports academy serving over 500 youth annually throughout South King County.</p>
+                <p>Our founder, Ali Abdulla, grew up in the area and understands the challenges local African youth face. He created AYSA to provide positive mentorship and opportunities through sports, with programs specifically designed for children ages 2-16.</p>
+                
+                <div class="mt-4">
+                    <h5>We Serve:</h5>
+                    <div>
+                        <span class="location-badge">Kent</span>
+                        <span class="location-badge">Tukwila</span>
+                        <span class="location-badge">SeaTac</span>
+                        <span class="location-badge">Renton</span>
+                        <span class="location-badge">Federal Way</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                <img src="images/teamwork.jpeg" class="img-fluid rounded shadow" alt="Our Team" style=" max-height: 350px; ">
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="mission-card">
+                    <i class="fas fa-bullseye"></i>
+                    <h3>Our Mission</h3>
+                    <p>To empower African youth through sports by developing athletic skills, building character, and fostering academic achievement in a supportive community environment throughout South King County.</p>
+                </div>
+            </div>
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="mission-card">
+                    <i class="fas fa-eye"></i>
+                    <h3>Our Vision</h3>
+                    <p>A community where every African youth in South King County has access to quality sports programming that helps them develop into confident, capable leaders both on and off the field.</p>
+                </div>
+            </div>
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="400">
+                <div class="mission-card">
+                    <i class="fas fa-heart"></i>
+                    <h3>Our Values</h3>
+                    <p>Respect • Teamwork • Integrity • Accountability • Excellence • Community • Cultural Pride</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- NEW TEAM SECTION ADDED HERE -->
+        <div class="row mt-5" data-aos="fade-up">
+            <div class="col-12">
+                <h2>Meet The AYSA Kent Academy Team</h2>
+                <p>Our dedicated staff serving South King County's African youth community</p>
+                
+                <div class="row mt-4">
+                    <!-- Team Member 1 -->
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="team-card">
+                            <img src="images/team/abdul.jpeg" class="team-img" alt="Team Member">
+                            <div class="team-info">
+                                <h4 class="team-name">Ali Abdulla</h4>
+                                <p class="team-title">Executive Director</p>
+                                <p>Founder with 10+ years experience in youth sports development across South King County.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Team Member 2 -->
+                    <!-- <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="team-card">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" class="team-img" alt="Team Member">
+                            <div class="team-info">
+                                <h4 class="team-name">Sarah Johnson</h4>
+                                <p class="team-title">Program Director</p>
+                                <p>Coordinates all sports programs for ages 2-16 throughout Kent and Tukwila.</p>
+                            </div>
+                        </div>
+                    </div> -->
+                    
+                    <!-- Team Member 3 -->
+                    <!-- <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="team-card">
+                            <img src="https://images.unsplash.com/photo-1562788869-4ed32648eb72?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" class="team-img" alt="Team Member">
+                            <div class="team-info">
+                                <h4 class="team-name">Michael Oluwaseun</h4>
+                                <p class="team-title">Head Coach</p>
+                                <p>Former professional athlete now training youth in SeaTac and Renton.</p>
+                            </div>
+                        </div>
+                    </div> -->
+                    
+                    <!-- Team Member 4 -->
+                    <!-- <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="team-card">
+                            <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" class="team-img" alt="Team Member">
+                            <div class="team-info">
+                                <h4 class="team-name">Amina Diallo</h4>
+                                <p class="team-title">Community Coordinator</p>
+                                <p>Organizes events connecting African families across South King County.</p>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5" data-aos="fade-up">
+            <div class="col-12">
+                <h2>Community Programs</h2>
+                <p>Beyond sports, we organize cultural events and community initiatives throughout South King County to strengthen bonds within the African community and provide positive outlets for youth ages 2-16.</p>
+                
+                <div class="row mt-4">
+                    <div class="col-md-6">
+                        <div class="p-4 bg-white rounded shadow-sm">
+                            <h4><i class="fas fa-calendar-alt text-gold me-2"></i> Annual Events</h4>
+                            <ul>
+                                <li>African Cultural Sports Day</li>
+                                <li>Youth Leadership Summit</li>
+                                <li>Community Unity Tournaments</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-4 bg-white rounded shadow-sm">
+                            <h4><i class="fas fa-hands-helping text-gold me-2"></i> Outreach</h4>
+                            <ul>
+                                <li>School partnerships in Kent & Tukwila</li>
+                                <li>SeaTac community center programs</li>
+                                <li>Renton youth mentorship</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+      <div class="row justify-content-center text-center">
+        <div class="col-lg-6">
+          <div class="footer-logo">AYSA Kent</div>
+          <p>Contact: ali.Abdulla@africanysa.org | 206-355-9280</p>
+          <div class="social-icons mb-4">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+          <p><small>© 2024 African Youth Sports Academy - AYSA Kent</small></p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS Animation -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS animation
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+        
+        // Back to top button
+        $(window).scroll(function(){
+            if ($(this).scrollTop() > 200) {
+                $('.back-to-top').fadeIn();
+            } else {
+                $('.back-to-top').fadeOut();
+            }
+        });
+        
+        $('.back-to-top').click(function(){
+            $('html, body').animate({scrollTop : 0}, 800);
+            return false;
+        });
+    </script>
+
+    <!-- Add this before the closing body tag -->
+    <div class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Add back to top functionality
+        const backToTop = document.querySelector('.back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+
+        backToTop.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+
+    <script>
+        // Enhanced Scroll Animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize AOS with enhanced settings
+            AOS.init({
+                duration: 1000,
+                easing: 'ease-in-out',
+                once: false,
+                mirror: true
+            });
+
+            // Parallax Effect for Page Header
+            window.addEventListener('scroll', function() {
+                const scrolled = window.pageYOffset;
+                const parallax = document.querySelector('.page-header');
+                parallax.style.backgroundPositionY = -(scrolled * 0.5) + 'px';
+            });
+
+            // Animated Counter for Impact Numbers
+            const counters = document.querySelectorAll('.impact-number');
+            const speed = 200;
+
+            function animateCounter(counter) {
+                const target = +counter.getAttribute('data-target');
+                const count = +counter.innerText;
+                const increment = target / speed;
+
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + increment);
+                    setTimeout(() => animateCounter(counter), 1);
+                } else {
+                    counter.innerText = target;
+                }
+            }
+
+            // Intersection Observer for Counter Animation
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounter(entry.target);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            counters.forEach(counter => observer.observe(counter));
+
+            // Enhanced Mission Card Hover Effects
+            const missionCards = document.querySelectorAll('.mission-card');
+            missionCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px) scale(1.02)';
+                });
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+
+            // Smooth Scroll for Navigation Links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Dynamic Background for Location Badges
+            const locationBadges = document.querySelectorAll('.location-badge');
+            locationBadges.forEach(badge => {
+                badge.addEventListener('mouseenter', function() {
+                    this.style.background = 'var(--gradient-gold)';
+                    this.style.color = 'var(--black)';
+                });
+                badge.addEventListener('mouseleave', function() {
+                    this.style.background = 'var(--dark-cream)';
+                    this.style.color = 'var(--black)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
